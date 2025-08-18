@@ -5,7 +5,7 @@ export default function StudentsPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/students', {
+    fetch('/api/students', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.ok ? res.json() : Promise.reject(res.statusText))

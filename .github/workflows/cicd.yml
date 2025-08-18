@@ -12,16 +12,16 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t asahithi/notenexus_backend --build-arg REACT_APP_NODE_ENV='production' --build-arg REACT_APP_SERVER_BASE_URL='${{ secrets.REACT_APP_SERVER_BASE_URL }}' .
+        run: docker build -t asahithi/notenexus_frontend --build-arg REACT_APP_NODE_ENV='production' --build-arg REACT_APP_SERVER_BASE_URL='${{ secrets.REACT_APP_SERVER_BASE_URL }}' .
       - name: Publish Image to docker hub
-        run: docker push asahithi/notenexus_backend:latest
+        run: docker push asahithi/notenexus_frontend:latest
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull asahithi/notenexus_backend:latest
+        run: docker pull asahithi/notenexus_frontend:latest
       - name: Delete old container
         run: docker rm -f reactjs-app-container
       - name: Run Docker Container
-        run: docker run -d -p 3000:80 --name reactjs-app-container asahithi/notenexus_backend
+        run: docker run -d -p 3000:80 --name reactjs-app-container asahithi/notenexus_frontend

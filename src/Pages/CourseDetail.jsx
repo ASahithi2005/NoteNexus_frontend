@@ -20,7 +20,7 @@ const CourseDetail = ({ user, token }) => {
   useEffect(() => {
     if (!courseId) return;
     setLoading(true);
-    fetch(`http://localhost:5000/api/courseDetail/${courseId}`, {
+    fetch(`/api/courseDetail/${courseId}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
@@ -49,7 +49,7 @@ const CourseDetail = ({ user, token }) => {
     if (!window.confirm(`Delete this ${section.slice(0, -1)}?`)) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/courseDetail/${courseId}/${section}/${index}`,
+        `/api/courseDetail/${courseId}/${section}/${index}`,
         { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }
       );
       if (!res.ok) throw new Error(await res.text());
@@ -79,7 +79,7 @@ const CourseDetail = ({ user, token }) => {
     if (!newDescription.trim()) return alert('Cannot be empty');
     try {
       const res = await fetch(
-        `http://localhost:5000/api/courseDetail/${courseId}/description`,
+        `/api/courseDetail/${courseId}/description`,
         {
           method: 'PUT',
           headers: {
@@ -110,7 +110,7 @@ const CourseDetail = ({ user, token }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/courseDetail/${courseId}/${section}`,
+        `/api/courseDetail/${courseId}/${section}`,
         {
           method: 'POST',
           body: formData,
@@ -146,7 +146,7 @@ const CourseDetail = ({ user, token }) => {
     });
     try {
       const res = await fetch(
-        `http://localhost:5000/api/courseDetail/${courseId}/${section}/${index}/summarize`,
+        `/api/courseDetail/${courseId}/${section}/${index}/summarize`,
         {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
@@ -168,7 +168,7 @@ const CourseDetail = ({ user, token }) => {
   const renderFileItem = (item, section, idx) => {
     if (!item.fileUrl) return null;
     const ext = item.fileUrl.split('.').pop().toLowerCase();
-    const url = `http://localhost:5000/${item.fileUrl}?t=${Date.now()}`;
+    const url = `/${item.fileUrl}?t=${Date.now()}`;
     const studentOwns =
       section === 'assignments' &&
       user?.role === 'student' &&

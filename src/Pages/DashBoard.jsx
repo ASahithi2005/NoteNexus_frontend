@@ -31,7 +31,7 @@ const DashBoard = () => {
     const fetchCourses = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/api/courses', {
+        const response = await fetch('/api/courses', {
           headers: {
             Authorization: token ? `Bearer ${token}` : '',
           },
@@ -63,7 +63,7 @@ const DashBoard = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/courses/join/${courseId}`, {
+      const response = await fetch(`/api/courses/join/${courseId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const DashBoard = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/courses/${courseId}`, {
+      const response = await fetch(`/api/courses/${courseId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

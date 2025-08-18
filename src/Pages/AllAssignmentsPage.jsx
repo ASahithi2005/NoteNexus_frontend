@@ -5,7 +5,7 @@ export default function AllAssignmentsPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/courseAggregates/assignments', {
+    fetch('/api/courseAggregates/assignments', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => (res.ok ? res.json() : Promise.reject(res.statusText)))
@@ -32,7 +32,7 @@ export default function AllAssignmentsPage({ token }) {
             </p>
             {a.fileUrl ? (
               <a
-                href={`http://localhost:5000${a.fileUrl.startsWith('/') ? a.fileUrl : '/' + a.fileUrl}`}
+                href={`${a.fileUrl.startsWith('/') ? a.fileUrl : '/' + a.fileUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block text-blue-600 underline hover:text-blue-800"

@@ -19,7 +19,7 @@ const NoteTakingPage = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/notes', {
+      const res = await fetch('/api/notes', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch notes');
@@ -48,8 +48,8 @@ const NoteTakingPage = () => {
     try {
       const method = form.id ? 'PUT' : 'POST';
       const url = form.id
-        ? `http://localhost:5000/api/notes/${form.id}`
-        : `http://localhost:5000/api/notes/add`;
+        ? `/api/notes/${form.id}`
+        : `/api/notes/add`;
 
       const res = await fetch(url, {
         method,
@@ -87,7 +87,7 @@ const NoteTakingPage = () => {
     if (!window.confirm('Are you sure you want to delete this note?')) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/notes/${id}`, {
+      const res = await fetch(`/api/notes/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -5,7 +5,7 @@ export default function NotesPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/courseAggregates/notes", {
+    fetch("/api/courseAggregates/notes", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
@@ -37,7 +37,7 @@ export default function NotesPage({ token }) {
                 : "Date not available"}
             </p>
             <a
-              href={`http://localhost:5000/${note.fileUrl}`}
+              href={`/${note.fileUrl}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-blue-600 underline hover:text-blue-800"
