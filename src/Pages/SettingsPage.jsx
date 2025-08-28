@@ -13,7 +13,7 @@ export default function SettingsPage({ token }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('/api/users/me', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/me`,{
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {
@@ -31,7 +31,7 @@ export default function SettingsPage({ token }) {
   const updateProfile = () => {
     setMessage('');
     setError('');
-    fetch('/api/users/me', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/me`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function SettingsPage({ token }) {
   const changePassword = () => {
     setMessage('');
     setError('');
-    fetch('/api/users/change-password', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/change-password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function SettingsPage({ token }) {
     if (!window.confirm('Are you sure you want to delete your account? This cannot be undone.')) return;
     setMessage('');
     setError('');
-    fetch('/api/users/me', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/users/me`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     })

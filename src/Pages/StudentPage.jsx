@@ -5,7 +5,7 @@ export default function StudentsPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/students', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/students`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.ok ? res.json() : Promise.reject(res.statusText))

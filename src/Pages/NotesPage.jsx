@@ -5,7 +5,7 @@ export default function NotesPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/api/courseAggregates/notes", {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/courseAggregates/notes`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))

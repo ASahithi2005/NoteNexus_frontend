@@ -5,7 +5,7 @@ export default function AllAssignmentsPage({ token }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/courseAggregates/assignments', {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/courseAggregates/assignments`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => (res.ok ? res.json() : Promise.reject(res.statusText)))

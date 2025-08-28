@@ -20,7 +20,7 @@ const CourseDetail = ({ user, token }) => {
   useEffect(() => {
     if (!courseId) return;
     setLoading(true);
-    fetch(`/api/courseDetail/${courseId}`, {
+    fetch(`${import.meta.env.VITE_SERVER_BASE_URL}/api/courseDetail/${courseId}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)))
@@ -49,7 +49,7 @@ const CourseDetail = ({ user, token }) => {
     if (!window.confirm(`Delete this ${section.slice(0, -1)}?`)) return;
     try {
       const res = await fetch(
-        `/api/courseDetail/${courseId}/${section}/${index}`,
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/courseDetail/${courseId}/${section}/${index}`,
         { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }
       );
       if (!res.ok) throw new Error(await res.text());
@@ -79,7 +79,7 @@ const CourseDetail = ({ user, token }) => {
     if (!newDescription.trim()) return alert('Cannot be empty');
     try {
       const res = await fetch(
-        `/api/courseDetail/${courseId}/description`,
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/courseDetail/${courseId}/description`,
         {
           method: 'PUT',
           headers: {
@@ -110,7 +110,7 @@ const CourseDetail = ({ user, token }) => {
 
     try {
       const res = await fetch(
-        `/api/courseDetail/${courseId}/${section}`,
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/courseDetail/${courseId}/${section}`,
         {
           method: 'POST',
           body: formData,
@@ -146,7 +146,7 @@ const CourseDetail = ({ user, token }) => {
     });
     try {
       const res = await fetch(
-        `/api/courseDetail/${courseId}/${section}/${index}/summarize`,
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/courseDetail/${courseId}/${section}/${index}/summarize`,
         {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
